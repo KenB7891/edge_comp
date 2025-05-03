@@ -25,13 +25,15 @@ def main(config_path: str):
     
     # 2a) Build Monitor‑wrapped env factories
     def make_env(rank):
-        return lambda: Monitor(
-            gym.make(
+        return lambda: gym.make(
                 "EdgeScheduling-v0",
-                num_nodes=3,
+                num_nodes=len(cfg['cpu_caps']),
+                cpu_caps=cfg['cpu_caps'],
+                mem_caps=cfg['mem_caps'],
+                arrival_rate=cfg['arrival_rate'],
+                max_tasks=cfg.get('max_tasks', 100),
                 seed=cfg["seed"] + rank
             )
-        )
 
     # 2b) Create parallel envs
     n_envs = 1

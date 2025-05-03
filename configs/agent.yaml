@@ -1,9 +1,18 @@
 # configs/agent.yaml
+
+# RL Model Final Parameters
 seed: 42
-total_timesteps: 40000
+total_timesteps: 80000
 learning_rate: 0.0001
 gamma: 0.99
 batch_size: 64
 n_steps: 2048
 vf_coef: 0.8
 ent_coef: 0.01
+
+cpu_caps: [0.25, 0.5, 1.0, 2.0]
+mem_caps: [2.0, 4.0, 8.0, 16.0]
+arrival_rate: 1.0
+max_tasks: 200
+
+
